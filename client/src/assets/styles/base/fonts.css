@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+h1 {
+    font-size: 40px;
+    flex-wrap: wrap;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 50px;
+}
+
+h2 {
+    font-size: 30px;
+    line-height: 40px;
+    color: #273c75;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 24px;
+    line-height: 34px;
+    color: #273c75;
+}
+
+

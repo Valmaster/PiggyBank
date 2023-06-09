@@ -1,0 +1,32 @@
+<ng-container *ngLet="activity$ | async as activity;">
+    <ng-container *ngLet="potsLength$ | async as potsLength">
+        <ng-container *ngLet="amountTotal$ | async as amountTotal">
+                <homepage-update-activity [activity]="editActivity" *ngIf="popup === 'update'"
+                                          (cancel)="togglePopUp('update')"></homepage-update-activity>
+                <li class="activity-item">
+            <span class="activity-members-number"
+                  *ngIf="activity.activityUserJunctions.length === 0"> {{ activity.activityUserJunctions.length + 1}}
+                participant</span>
+                    <span class="activity-members-number"
+                          *ngIf="activity.activityUserJunctions.length === 1"> {{ activity.activityUserJunctions.length + 1}}
+                        participants</span>
+                    <span class="activity-members-number"
+                          *ngIf="activity.activityUserJunctions.length > 1"> {{ activity.activityUserJunctions.length + 1}}
+                        participants</span>
+                    <i class="material-icons activity-edit" (click)="togglePopUp('update'); editActivity = activity;"
+                       *ngIf="(currentUser$ | async).id === activity.user.id">edit</i>
+                    <i class="material-icons activity-delete" (click)="onDelete(activity.id)"
+                       *ngIf="(currentUser$ | async).id === activity.user.id">delete</i>
+                    <h3 class="activity-title" [routerLink]="['/activity', activity.id]"> {{ activity.title }}</h3>
+                    <span class="activity-pots-number" *ngIf="activity.pots.length > 1">{{ activity.pots.length }}
+                        pots communs </span>
+                    <span class="activity-pots-number" *ngIf="activity.pots.length === 1">1 pot commun </span>
+                    <span class="activity-pots-number" *ngIf="activity.pots.length === 0">Aucun pot commun</span>
+                    <span class="totalAmountParticipation" *ngIf="amountTotal === 0">Participations: 0 € </span>
+                    <span class="totalAmountParticipation" *ngIf="amountTotal > 0">Participations: {{ amountTotal }} € </span>
+                    <i class="material-icons activity-user"
+                       *ngIf="(currentUser$ | async).id === activity.user.id">account_box</i>
+                </li>
+        </ng-container>
+    </ng-container>
+</ng-container>

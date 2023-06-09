@@ -1,0 +1,29 @@
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh">
+    <div class="card" style="width: 25rem">
+        <div class="card-body">
+            <h3>{{ invitation?.activity.title }}</h3>
+            <h6 class="text-muted">{{ invitation?.activity.user.username }}</h6>
+        </div>
+        <div class="card-body border-top">
+
+            <ng-container *ngIf="loggedIn; else loggedOut;">
+                <button (click)="join()" class="btn-primary btn">Rejoindre l'activité</button>
+            </ng-container>
+
+            <ng-template #loggedOut>
+                <shared-login *ngIf="hasAccount" (result)="stay()"></shared-login>
+                <shared-register *ngIf="!hasAccount" (result)="stay()"></shared-register>
+            </ng-template>
+
+        </div>
+
+        <div class="card-body border-top">
+            <div *ngIf="!hasAccount" class="card-link text-primary" (click)="hasAccount = true">
+                J'ai déjà un compte
+            </div>
+            <div *ngIf="hasAccount" class="card-link text-primary" (click)="hasAccount = false">
+                Créer un compte
+            </div>
+        </div>
+    </div>
+</div>

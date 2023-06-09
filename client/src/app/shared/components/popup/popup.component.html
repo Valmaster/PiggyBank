@@ -1,0 +1,8 @@
+<div class="popup-background">
+    <mat-card class="popup-card" (clickout)="cancel.emit()" fxLayout="column" fxLayoutAlign="center center">
+        <button class="popup-close" (click)="cancel.emit()">
+            <i class="material-icons">close</i>
+        </button>
+        <ng-content></ng-content>
+    </mat-card>
+</div>

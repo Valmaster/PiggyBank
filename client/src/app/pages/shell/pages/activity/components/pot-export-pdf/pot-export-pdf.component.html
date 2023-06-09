@@ -1,0 +1,51 @@
+<ng-container *ngLet="pot$ | async as pot;">
+    <ng-container *ngLet="participations$ | async as participations">
+        <ng-container *ngLet="amountTotal$ | async as amountTotal">
+            <ng-container *ngLet="(activity$ | async)?.user?.id === currentUserId as owned">
+
+                <shared-popup *ngIf="updatePot" (cancel)="toggleUpdatePot()">
+                    <activity-update-pot (cancel)="toggleUpdatePot()" [pot]="updatePot"></activity-update-pot>
+                </shared-popup>
+
+                <shared-popup *ngIf="addParticipation" (cancel)="toggleAddParticipation()">
+                    <activity-add-participation (cancel)="toggleAddParticipation()"
+                                                [potId]="potId"></activity-add-participation>
+                </shared-popup>
+
+                <shared-popup *ngIf="updateParticipation" (cancel)="toggleUpdateParticipation()">
+                    <activity-update-participation (cancel)="toggleUpdateParticipation()"
+                                                   [participation]="updateParticipation"></activity-update-participation>
+                </shared-popup>
+                <div class="accordion my-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <li class="d-flex flex-row justify-content-between">
+                                <div class="pot-item-header">
+                                    <h3 class="pot-title mr-2">{{pot.title}}</h3>
+                                </div>
+                            </li>
+                        </div>
+                        <hr class="separator-member-header pb-3">
+                        <div class="collapse show">
+                            <div class="card-body">
+                                <ul class="participations-list">
+                                    <ng-container *ngFor="let participation of participations">
+                                        <li class="participation-item">
+                                            <span class="participation-user">{{ participation?.user?.username }}</span>
+                                            <div class="d-flex flex-row">
+                                            <span class="participation-amount mr-3">{{ participation?.amount }}
+                                                euros </span>
+                                            </div>
+                                        </li>
+                                        <hr class="separator">
+                                    </ng-container>
+                                </ul>
+                                    <h5 class="bottom-participations-pdf">Total: <span class="totalAmountPot">{{ amountTotal }} euros</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</ng-container>

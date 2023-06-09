@@ -1,0 +1,194 @@
+.activity-header {
+    width: 100%;
+    height: 300px;
+    background-color: #304873;
+    display:flex;
+    align-items: center;
+}
+
+.activity-header .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.this-activity-title {
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.activity-title {
+    cursor: pointer;
+}
+
+.button-activity-header {
+    color: #fff;
+    background-color: #54a0ff;
+    height: 4rem !important;
+    border-radius: 50px !important;
+    width:220px;
+}
+
+.pot-section {
+    position: relative;
+    top: -37.5px;
+}
+
+.pot-header, .header-members {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 75px;
+}
+
+.pot-header {
+    padding: 30px;
+}
+
+.separator-member-header {
+    margin: 0 !important;
+}
+
+.pot-number, .add-pot, .member-number, .add-guest, .dropdown {
+    color: #54a0ff;
+}
+
+.dropdown{
+    transform: rotate(90deg);
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+}
+
+.add-pot, .add-guest{
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+}
+
+.add-pot:hover, .add-guest:hover{
+    opacity: 0.5;
+    font-size: 28px;
+}
+
+.pot-icons, .member-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pot-icons i:nth-child(2) {
+    margin-left: 5px;
+}
+
+.pot-edit, .pot-delete, .member-delete {
+    opacity: 0.3;
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+    display: none;
+}
+
+.pot-item:hover .pot-edit, .pot-item:hover .pot-delete, li.member-item:hover .member-delete {
+    display: block;
+}
+
+.pot-edit:hover, .pot-delete:hover, .member-delete {
+    opacity: 1;
+}
+
+
+.pot-header, .pot-item {
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    background-color: white;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.pot-item > li, .pot-item ul {
+    padding: 10px 30px;
+    color: #273c75;
+}
+
+.pot-item:last-child{
+    margin-bottom:0;
+}
+
+
+.pot-item-header{
+    display:flex;
+    align-items: center;
+}
+
+.members-activity {
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    background-color: white;
+    padding: 0 !important;
+}
+
+@media all and (max-width:980px){
+    .members-activity{
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .activity-header-title {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align:center;
+    }
+
+    .activity-header-title .this-activity-title {
+        margin-bottom: 20px;
+    }
+
+    .button-activity-header {
+        margin-bottom: 20px;
+    }
+
+    .bottom-participations {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .add-participation {
+        margin-bottom: 15px;
+    }
+
+}
+
+
+.members-activity .header-members, .members-activity ul {
+    padding: 30px;
+}
+
+.member-item {
+    display: flex
+}
+
+.separator-pot-title {
+    width: 100%;
+}
+
+.participation-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.participation-amount, .plus-participation, .totalAmountPot {
+    color: #54a0ff;
+}
+
+.participation-user, .add-participation, .member-item, h5 {
+    color: #273c75;
+    font-weight: 500;
+}
+
+.bottom-participations {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+}

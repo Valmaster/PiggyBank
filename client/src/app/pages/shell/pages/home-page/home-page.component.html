@@ -1,0 +1,17 @@
+<homepage-add-activity *ngIf="popup === 'add'" (cancel)="togglePopUp('add')"></homepage-add-activity>
+<homepage-update-activity [activity]="editActivity" *ngIf="popup === 'update'" (cancel)="togglePopUp('update')"></homepage-update-activity>
+
+<div class="container">
+    <div class="homepage-head">
+        <h2>Activités <span class="activities-number">{{ totalPartials$ | async }}</span></h2>
+        <button class="btn btn-primary add-activity" (click)="togglePopUp('add')">Ajouter une
+            activité
+        </button>
+    </div>
+    <ul class="activities-list">
+        <ng-container *ngFor="let activity of partials$ | async">
+            <activity-activities [activityId]="activity.id"></activity-activities>
+        </ng-container>
+    </ul>
+    <button *ngIf="hasMore$ | async" (click)="getMore()" class="btn btn-secondary mt-5">Afficher plus</button>
+</div>

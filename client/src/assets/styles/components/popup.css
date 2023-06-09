@@ -1,0 +1,30 @@
+.popup-background{
+    width:100%;
+    min-height:100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 500;
+}
+
+.popup-card{
+    width: 340px;
+    height: fit-content;
+    position: relative;
+}
+
+.popup-close{
+    position: absolute !important;
+    top: 5px;
+    right: 5px;
+    z-index: 1000;
+    padding:5px !important;
+}
+
+.popup-close:hover{
+    color: #54a0ff;
+}

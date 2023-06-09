@@ -1,0 +1,10 @@
+    <mat-card-title>Inviter quelqu'un à rejoindre votre activité</mat-card-title>
+    <mat-card-content>
+        <div>
+            <label>Lien d'invitation</label>
+            <div>
+                <input [value]="getLink()" readonly>
+                <button [disabled]="!code" (click)="copy()">Copier</button>
+            </div>
+        </div>
+    </mat-card-content>

@@ -1,0 +1,228 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
+}
+
+type ActivitiesOutput {
+    hasMore: Boolean!
+    items: [Activity!]
+    total: Int!
+}
+
+type Activity {
+    activityUserJunctions: [ActivityUserJunction!]!
+    createdAt: DateTime!
+    description: String
+    id: String!
+    invitations: [Invitation!]
+    participations: [Participation!]
+    pots: [Pot!]
+    state: ActivityStateEnum!
+    title: String!
+    updatedAt: DateTime!
+    user: User!
+}
+
+type ActivityUserJunction {
+    activity: Activity!
+    createdAt: DateTime!
+    id: Int!
+    user: User!
+}
+
+type Invitation {
+    activity: Activity!
+    code: String!
+    createdAt: DateTime!
+    expiresAt: DateTime!
+    id: String!
+}
+
+type LoginOutput {
+    accessToken: String!
+    refreshToken: String!
+    user: User!
+}
+
+type Mutation {
+    addActivity(input: AddActivityInput!): Activity!
+    addActivityUserJunction(invitationCode: String!): ActivityUserJunction!
+    addInvitation(activityId: String!): Invitation!
+    addParticipation(input: AddParticipationInput!, potId: String!): Participation!
+    addPot(activityId: String!, input: AddPotInput!): Pot!
+    deleteActivity(id: String!): Boolean!
+    deleteActivityUserJunction(id: Float!): Boolean!
+    deleteParticipation(id: String!): Boolean!
+    deletePot(id: String!): Boolean!
+    login(input: LoginInput!): LoginOutput!
+    readNotification(id: String!): Notification!
+    refresh(input: RefreshInput!): RefreshOutput!
+    register(input: RegisterInput!): RegisterOuput!
+    updateActivity(id: String!, input: UpdateActivityInput!): Activity!
+    updateParticipation(id: String!, input: UpdateParticipationInput!): Participation!
+    updatePot(id: String!, input: UpdatePotInput!): Pot!
+}
+
+type Notification {
+    createdAt: DateTime!
+    id: String!
+    message: String!
+    readAt: DateTime
+    relatedId: String
+    type: NotificationTypeEnum!
+    updatedAt: DateTime!
+    user: User!
+}
+
+type NotificationsOutput {
+    hasMore: Boolean!
+    items: [Notification!]
+    total: Int!
+}
+
+type Participation {
+    activity: Activity!
+    amount: Float!
+    createdAt: DateTime!
+    description: String!
+    id: String!
+    pot: Pot!
+    updatedAt: DateTime!
+    user: User!
+}
+
+type Pot {
+    activity: Activity!
+    createdAt: DateTime!
+    description: String
+    id: String!
+    participations: [Participation!]
+    title: String!
+    updatedAt: DateTime!
+}
+
+type Query {
+    activities(input: ActivitiesInput!): ActivitiesOutput!
+    activity(id: String!): Activity!
+    emailExists(input: EmailExistsInput!): Boolean!
+    invitationExists(invitationCode: String!): Invitation!
+    me: User!
+    notifications(input: NotificationsInput!): NotificationsOutput!
+    user(id: String!): User!
+}
+
+type RefreshOutput {
+    accessToken: String!
+    refreshToken: String!
+}
+
+type RegisterOuput {
+    accessToken: String!
+    refreshToken: String!
+    user: User!
+}
+
+type Subscription {
+    receivedNotification: Notification!
+}
+
+type User {
+    activityUserJunctions: [ActivityUserJunction!]!
+    createdAt: DateTime!
+    email: String!
+    id: String!
+    myActivities: [Activity!]
+    notifications: [Notification!]
+    participations: [Participation!]
+    password: String!
+    roles: [UserRoleEnum!]!
+    updatedAt: DateTime!
+    username: String!
+}
+
+enum ActivityStateEnum {
+    Closed
+    Open
+}
+
+enum NotificationTypeEnum {
+    ActivityState
+    Default
+    DeleteParticipation
+    EditParticipation
+    LeaveGuest
+    NewGuest
+    NewParticipation
+}
+
+enum UserRoleEnum {
+    Admin
+    User
+}
+
+input ActivitiesInput {
+    skip: Float!
+    take: Float!
+}
+
+input AddActivityInput {
+    description: String
+    title: String!
+}
+
+input AddParticipationInput {
+    amount: Float!
+    description: String
+}
+
+input AddPotInput {
+    description: String
+    title: String!
+}
+
+input EmailExistsInput {
+    email: String!
+}
+
+input LoginInput {
+    email: String!
+    password: String!
+}
+
+input NotificationsInput {
+    skip: Float!
+    take: Float!
+}
+
+input RefreshInput {
+    refreshToken: String!
+}
+
+input RegisterInput {
+    email: String!
+    password: String!
+    username: String!
+}
+
+input UpdateActivityInput {
+    description: String
+    state: String
+    title: String
+}
+
+input UpdateParticipationInput {
+    amount: Float
+    description: String
+}
+
+input UpdatePotInput {
+    description: String
+    title: String
+}
+
+
+"A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format."
+scalar DateTime

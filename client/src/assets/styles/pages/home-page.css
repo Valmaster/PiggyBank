@@ -1,0 +1,130 @@
+.homepage-head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+
+@media all and (max-width:350px){
+    .homepage-head{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+}
+
+.activities-number{
+    color: #54a0ff !important;
+}
+
+.add-activity {
+    padding: 10px 20px;
+    border-radius: 30px;
+}
+
+ul.activities-list {
+    width: 100%;
+    display:grid;
+    grid-row-gap: 30px;
+    grid-column-gap: 30px;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media all and (max-width:800px){
+    ul.activities-list{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media all and (max-width:500px){
+    ul.activities-list{
+        grid-template-columns: 1fr;
+    }
+}
+
+li.activity-item {
+    width:100%;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    background-color: white;
+    padding: 30px;
+    position: relative;
+    height: 260px;
+}
+
+li.activity-item:hover .activity-edit, li.activity-item:hover .activity-delete{
+    display: block;
+}
+
+.activity-members-number {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    background-color: #54a0ff;
+    padding: 2px 5px;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.activity-edit{
+    position: absolute;
+    top: 5px;
+    right: 30px;
+    opacity: 0.3;
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+    display: none;
+}
+
+.activity-delete{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    opacity: 0.3;
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+    display: none;
+}
+
+.activity-edit:hover, .activity-delete:hover{
+    opacity: 1;
+}
+
+.activity-title{
+    margin-top: 50px;
+}
+
+.activity-pots-number{
+    position: absolute;
+    left: 30px;
+    bottom: 55px;
+    color: #273c75;
+    font-weight: 500;
+}
+
+.totalAmountParticipation{
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+    color: #273c75;
+    font-weight: 500;
+}
+
+.activity-user{
+    position: absolute;
+    background-color: #273c75;
+    bottom: 0;
+    right: 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+}

@@ -1,0 +1,17 @@
+<shared-popup *ngIf="popup === 'login'" (cancel)="togglePopUp('login')">
+    <shared-login (cancel)="togglePopUp('login')"></shared-login>
+</shared-popup>
+<shared-popup *ngIf="popup === 'register'" (cancel)="togglePopUp('register')">
+    <shared-register (cancel)="togglePopUp('register')"></shared-register>
+</shared-popup>
+<div class="welcome-container" fxLayout="column" fxLayoutAlign="center">
+    <div>
+        <img class="welcome-logo mb-5" src="assets/images/piggylogo.svg">
+        <h1 class="mat-h1 text-center">Besoin de créer un ou plusieurs pot commun en lien avec votre activité?</h1>
+        <span class="sous-titre">Restaurants, déplacements, vacances...<br>Vous êtes au bon endroit!</span>
+        <div class="mt-5">
+            <button class="welcome-button" (click)="togglePopUp('register')">Créer un compte</button>
+            <button class="welcome-button" (click)="togglePopUp('login')">Me connecter</button>
+        </div>
+    </div>
+</div>

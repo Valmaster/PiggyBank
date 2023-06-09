@@ -1,0 +1,25 @@
+<div routerLink="/" class="home">
+    <img class="header-logo" src="assets/images/piggylogo.svg">
+    <span fxHide.xs>PIGGY BANK</span>
+</div>
+
+<span *ngIf="currentUser$ | async; let currentUser">{{ currentUser.email }}</span>
+<div class="header-items">
+    <div class="notification header-item">
+        <i class="material-icons notif" (click)="toggle()">notifications</i>
+        <span class="notif-number">{{ notifications?.length }}</span>
+    </div>
+    <i class="material-icons header-item" (click)="logout()">power_settings_new</i>
+    <ul class="notif-list" *ngIf="show" (clickout)="toggle()">
+        <ng-container *ngFor="let notif of notifications">
+                <li class="notif-item" (click)="usedNotif(notif.id)">
+                    <a class="link-activity"
+                       href="{{ location + '/activity/' + notif?.relatedId }}">{{ notif?.message }}</a>
+                </li>
+                <hr class="separator-notif">
+        </ng-container>
+    </ul>
+</div>
+
+
+

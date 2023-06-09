@@ -1,0 +1,13 @@
+@import "./base/reset.css";
+@import "./base/fonts.css";
+@import "./base/properties.css";
+@import "./components/login.css";
+@import "./components/register.css";
+@import "./components/popup.css";
+@import "./layout/header.css";
+@import "./pages/home-page.css";
+@import "./pages/welcome.css";
+@import "./pages/activity.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+

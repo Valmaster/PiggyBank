@@ -1,0 +1,39 @@
+<ng-container *ngIf="success"></ng-container>
+<ng-container *ngIf="!success">
+    <mat-card-title>Inscription</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="form" fxLayout="column" fxLayoutGap="15px" (submit)="form.valid && submit()">
+            <mat-form-field>
+                <input
+                        matInput
+                        formControlName="email"
+                        type="text"
+                        placeholder="email"
+                />
+            </mat-form-field>
+            <app-form-error [control]="form.get('email')"></app-form-error>
+            <mat-form-field>
+                <input
+                        matInput
+                        formControlName="username"
+                        type="text"
+                        placeholder="nom"
+                />
+            </mat-form-field>
+            <app-form-error [control]="form.get('username')"></app-form-error>
+            <mat-form-field>
+                <input
+                        matInput
+                        formControlName="password"
+                        type="password"
+                        placeholder="mot de passe"
+                />
+            </mat-form-field>
+            <app-form-error [control]="form.get('password')"></app-form-error>
+            <button class="connexion" mat-raised-button color="primary" [disabled]="!form.valid">
+                Inscription
+            </button>
+        </form>
+    </mat-card-content>
+</ng-container>
+

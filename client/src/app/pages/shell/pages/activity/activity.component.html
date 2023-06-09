@@ -1,0 +1,98 @@
+<ng-container *ngIf="activity$ | async as activity">
+    <ng-container *ngLet="activity.user.id === (currentUser$ | async).id as owned">
+
+        <shared-popup *ngIf="popup === 'addInvitation'" (cancel)="togglePopUp('addInvitation')">
+            <activity-add-invitation [activityId]="activity.id"
+                                     (cancel)="togglePopUp('addInvitation')"></activity-add-invitation>
+        </shared-popup>
+
+        <shared-popup *ngIf="popup === 'add'" (cancel)="togglePopUp('add')">
+            <activity-add-pot [activityId]="activity.id" (cancel)="togglePopUp('add')"></activity-add-pot>
+        </shared-popup>
+
+        <div class="activity-header">
+            <div class="container activity-header-title">
+                <span class="this-activity-title">{{ activity?.title }}</span>
+                <button class="button-activity-header"
+                        *ngIf="owned && activity.state === 'Open' "
+                        (click)="changeState(activity)">Clôturer cette activité
+                </button>
+                <button class="button-activity-header"
+                        *ngIf="owned && activity.state === 'Closed' "
+                        (click)="changeState(activity)">Réouvrir cette activité
+                </button>
+                <button class="button-activity-header" (click)="downloadPDF()">Exporter en PDF</button>
+            </div>
+        </div>
+
+        <div class="pot-section container" *ngLet="pots$ | async as pots">
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                    <div class="pot-header">
+                        <h3>
+                            Pots communs
+                            <span class="pot-number">{{ pots?.length }}</span>
+                        </h3>
+                        <i class="material-icons add-pot" *ngIf="owned"
+                           (click)="togglePopUp('add')">add</i>
+                    </div>
+                    <ul class="pots-list">
+                        <ng-container *ngFor="let pot of pots; let i = index;">
+                            <activity-pot [i]="i" [potId]="pot.id" [activityId]="activity.id"></activity-pot>
+                        </ng-container>
+                    </ul>
+                </div>
+                <div class="members-activity col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="header-members">
+                        <h3>
+                            Membres
+                            <span class="member-number">{{ activity.activityUserJunctions?.length + 1 }}</span>
+                        </h3>
+                        <i class="material-icons add-guest" *ngIf="owned"
+                           (click)="togglePopUp('addInvitation')">person_add</i>
+                    </div>
+                    <hr class="separator-member-header">
+                    <ul>
+                        <li class="member-item mb-3">
+                            {{ activity.user.username }} <i class="material-icons">account_box</i>
+                        </li>
+                        <hr class="separator">
+                        <ng-container *ngFor="let guest of activity.activityUserJunctions">
+                            <li class="member-item">
+                                <span>{{ guest.user.username }}</span>
+                                <i class="material-icons member-delete"
+                                   *ngIf="owned"
+                                   (click)="deleteGuest(guest)">delete</i>
+                                <i class="material-icons member-delete"
+                                   *ngIf="!owned && guest.user.id === (currentUser$ | async).id"
+                                   (click)="leaveActivity(guest)">delete</i>
+                            </li>
+                            <hr class="separator">
+                        </ng-container>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>
+
+<!-- Pour l'export uniquement -->
+
+<div id="content" #content style="display:none;">
+    <ng-container *ngIf="activity$ | async as activity">
+        <h2 class="text-center">Voici un résumé des participations pour chaque pots de l'activité {{ activity.title }}</h2>
+        <div class="pot-section container" *ngLet="pots$ | async as pots">
+            <div class="pot-header" *ngLet="participations$ | async as participations">
+                <h3>
+                    Pots communs
+                    <span class="pot-number">{{ pots?.length }}</span>
+                </h3>
+            </div>
+                    <ul class="pots-list">
+                        <ng-container *ngFor="let pot of pots">
+                            <activity-pot-export-pdf [potId]="pot.id" [activityId]="activity.id"></activity-pot-export-pdf>
+                        </ng-container>
+                    </ul>
+        </div>
+    </ng-container>
+</div>

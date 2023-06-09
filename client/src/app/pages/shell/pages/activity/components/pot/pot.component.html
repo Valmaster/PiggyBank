@@ -1,0 +1,77 @@
+<ng-container *ngLet="pot$ | async as pot;">
+    <ng-container *ngLet="participations$ | async as participations">
+        <ng-container *ngLet="amountTotal$ | async as amountTotal">
+            <ng-container *ngLet="(activity$ | async)?.user?.id === currentUserId as owned">
+
+                <shared-popup *ngIf="updatePot" (cancel)="toggleUpdatePot()">
+                    <activity-update-pot (cancel)="toggleUpdatePot()" [pot]="updatePot"></activity-update-pot>
+                </shared-popup>
+
+                <shared-popup *ngIf="addParticipation" (cancel)="toggleAddParticipation()">
+                    <activity-add-participation (cancel)="toggleAddParticipation()"
+                                                [activityId]="activityId"
+                                                [potId]="potId"></activity-add-participation>
+                </shared-popup>
+
+                <shared-popup *ngIf="updateParticipation" (cancel)="toggleUpdateParticipation()">
+                    <activity-update-participation (cancel)="toggleUpdateParticipation()"
+                                                   [participation]="updateParticipation"></activity-update-participation>
+                </shared-popup>
+                <div class="accordion my-5" id="accordionExample">
+                    <div class="pot-item card">
+                        <div class="card-header" [id]="'heading' + i">
+                            <li class="d-flex flex-row justify-content-between">
+                                <div class="pot-item-header">
+                                    <h3 class="pot-title mr-2">{{pot.title}}</h3>
+                                    <button type="button" data-toggle="collapse"
+                                            [attr.data-target]="'#collapseOne' + i"
+                                            [attr.aria-controls]="'collapseOne' + i"
+                                            aria-expanded="false"
+                                            class="material-icons dropdown">arrow_forward_ios
+                                    </button>
+                                </div>
+                                <div class="pot-icons">
+                                    <i class="material-icons pot-edit" *ngIf="owned"
+                                       (click)="toggleUpdatePot(pot)">edit</i>
+                                    <i class="material-icons pot-delete" *ngIf="owned"
+                                       (click)="deletePot(pot)">delete</i>
+                                </div>
+                            </li>
+                        </div>
+                        <hr class="separator-member-header pb-3">
+                        <div [id]="'collapseOne' + i" class="collapse show" [attr.aria-labelledby]="'heading' + i"
+                             data-parent="#accordionExample">
+                            <div class="card-body">
+                                <ul class="participations-list">
+                                    <ng-container *ngFor="let participation of participations">
+                                        <li class="participation-item">
+                                            <span class="participation-user">{{ participation?.user?.username }}</span>
+                                            <div class="d-flex flex-row">
+                                            <span class="participation-amount mr-3">{{ participation?.amount }}
+                                                € </span>
+                                                <i class="material-icons participation-edit"
+                                                   *ngIf="(currentUser$ | async).id === participation.user.id"
+                                                   (click)="toggleUpdateParticipation(participation)">edit</i>
+                                                <i class="material-icons participation-delete"
+                                                   *ngIf="(currentUser$ | async).id === participation.user.id"
+                                                   (click)="deleteParticipation(participation)">delete</i>
+                                            </div>
+                                        </li>
+                                        <hr class="separator">
+                                    </ng-container>
+                                </ul>
+                                <div class="bottom-participations py-4">
+                                    <p class="add-participation d-flex flex-row">Ajouter
+                                        une
+                                        participation<i class="material-icons plus-participation"
+                                                        (click)="toggleAddParticipation()">add</i></p>
+                                    <h5>Total: <span class="totalAmountPot">{{ amountTotal }} €</span></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</ng-container>

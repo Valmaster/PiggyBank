@@ -1,0 +1,33 @@
+.welcome-container{
+    text-align: center;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height:70%;
+    background-color: #54a0ff;
+}
+
+.sous-titre{
+    font-size:24px;
+}
+
+.welcome-button{
+    background-color: transparent;
+    color: #fff;
+    height: 3rem;
+    width: 12rem;
+    border: 2px solid #fff;
+    border-radius: 28px;
+    margin: 10px;
+}
+
+.welcome-button:hover{
+    color: #54a0ff;
+    background-color: #fff;
+}
+
+.welcome-logo{
+    height:80px;
+}
+

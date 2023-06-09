@@ -1,0 +1,3 @@
+<ng-container *ngIf="!control.valid && control.dirty && control.touched && !control.pending">
+  <mat-error *ngFor="let error of values(control.errors)">{{ error }}</mat-error>
+</ng-container>

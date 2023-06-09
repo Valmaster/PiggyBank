@@ -1,0 +1,26 @@
+<mat-card-title>Modifier</mat-card-title>
+<mat-card-content>
+    <form fxLayout="column" fxLayoutGap="15px" [formGroup]="form" (submit)="form.valid && submit()">
+        <mat-form-field>
+            <input
+                    matInput
+                    formControlName="amount"
+                    type="number"
+                    placeholder="montant"
+            />
+        </mat-form-field>
+        <app-form-error [control]="form.get('amount')"></app-form-error>
+        <mat-form-field>
+            <input
+                    matInput
+                    formControlName="description"
+                    type="text"
+                    placeholder="description"
+            />
+        </mat-form-field>
+        <app-form-error [control]="form.get('description')"></app-form-error>
+        <button class="connexion" mat-raised-button color="primary" [disabled]="!form.valid || pending">
+            Modifier
+        </button>
+    </form>
+</mat-card-content>

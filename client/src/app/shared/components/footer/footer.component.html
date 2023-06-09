@@ -1,0 +1,62 @@
+<script src="footer.component.ts"></script>
+<script src="../form-error/form-error.component.ts"></script>
+<div class="footer" fxLayout="column" fxLayoutAlign="center center">
+    <h5 class="my-4">
+      <strong>N'hésitez pas à nous contacter</strong>
+    </h5>
+
+  <mat-divider></mat-divider>
+
+    <form
+      fxLayout="column"
+      style="color: #757575;"
+      [formGroup]="contactForm"
+      (ngSubmit)="submit()"
+    >
+      <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="40px">
+        <mat-form-field>
+          <mat-label>Nom *</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="contactFormName"
+            id="materialContactFormName"
+          />
+        </mat-form-field>
+        <app-form-error [control]="contactForm.get('contactFormName')"></app-form-error>
+        <mat-form-field>
+          <mat-label for="materialContactFormEmail">Email *</mat-label>
+          <input
+            matInput
+            type="email"
+            formControlName="contactFormEmail"
+            id="materialContactFormEmail"
+          />
+        </mat-form-field>
+        <app-form-error [control]="contactForm.get('contactFormEmail')"></app-form-error>
+      </div>
+
+      <mat-form-field>
+        <mat-label for="materialContactFormMessage">Message *</mat-label>
+          <textarea
+          matInput
+          type="text"
+          formControlName="contactFormMessage"
+          id="materialContactFormMessage"
+        >
+        </textarea>
+      </mat-form-field>
+      <app-form-error [control]="contactForm.get('contactFormMessage')"></app-form-error>
+
+      <div fxLayoutAlign="center center">
+        <button
+          mat-raised-button
+          color="primary"
+          class="w-50 mt-4 mb-5"
+          type="submit"
+        >
+        Envoyer
+        </button>
+      </div>
+    </form>
+</div>
